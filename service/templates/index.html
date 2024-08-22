@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+ 
+    <div>
+        {% for folder in folders %}
+            <a href="{% url 'service:folder_view' folder.id %}" > {{ folder.name }} </a>
+        {% endfor %}
+
+    </div>
+
+
+{% endblock %}

@@ -4,7 +4,7 @@ from embed_video.fields import EmbedVideoField
 
 class Folder(models.Model):
     name = models.CharField(max_length=100)
-    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='subfolders')
+    parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='subfolders', null=True, blank=True)
     is_public = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)

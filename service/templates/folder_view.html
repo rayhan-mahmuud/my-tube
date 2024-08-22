@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load embed_video_tags %}
+{% block content %}
+
+<h3>{{ folder.name }}</h3>
+
+<div>
+    {% if subfolders %}
+        {% for subfolder in subfolders %}
+            <a href="{% url 'service:folder_view' subfolder.id %}" > {{ subfolder.name }} </a>
+        {% endfor %}
+    {% else %}
+        <p>No subfolders available.</p>
+    {% endif %}
+
+</div>
+
+<div>
+    {% for video in videos %}
+        {% video video.url '420x315'%}
+    {% endfor %}
+</div>
+
+{% endblock %}
