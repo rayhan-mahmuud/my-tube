@@ -2,23 +2,47 @@
 {% load embed_video_tags %}
 {% block content %}
 
-<h3>{{ folder.name }}</h3>
 
-<div>
-    {% if subfolders %}
-        {% for subfolder in subfolders %}
-            <a href="{% url 'service:folder_view' subfolder.id %}" > {{ subfolder.name }} </a>
-        {% endfor %}
-    {% else %}
-        <p>No subfolders available.</p>
-    {% endif %}
 
+<div class="container-fluid parent-container">
+    <!-- Parent Folder Name -->
+    <h2>{{ folder.name }}</h2>
+
+    <!-- Subfolders Section -->
+    <div class="subfolders-section mb-4">
+        <h3>Subfolders</h3>
+        <div class="row">
+            {% for subfolder in subfolders %}
+                <div class="col-4 col-md-3 text-center">
+                    <a href="{% url 'service:folder_view' subfolder.id %}" class="text-decoration-none">
+                        <i class="fas fa-folder fa-4x text-warning"></i>
+                        <p class="mt-2">{{ subfolder.name }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Videos Section -->
+    <div class="videos-section">
+        <h3>Videos</h3>
+        <div class="row">
+            {% for video in videos %}
+                <div class="col-12 col-md-3 mb-4">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        {% video video.url '320x240' %}
+                    </div>
+                    <div class="mt-2">
+                        <h5>{{ video.name }}</h5>
+                        <p>{{ video.desc }}</p>
+                        <small class="text-muted">Added on: {{ video.added_at|date:"F j, Y, g:i a" }}</small>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
-<div>
-    {% for video in videos %}
-        {% video video.url '420x315'%}
-    {% endfor %}
-</div>
+
 
 {% endblock %}

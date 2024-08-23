@@ -1,13 +1,25 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block content %}
- 
-    <div>
-        {% for folder in folders %}
-            <a href="{% url 'service:folder_view' folder.id %}" > {{ folder.name }} </a>
-        {% endfor %}
 
+<div class="container-fluid parent-container">
+    <h2>Your Space</h2>
+
+    <div class="subfolders-section mb-4">
+        
+        <div class="row">
+            {% for folder in folders %}
+                <div class="col-4 col-md-3 text-center">
+                    <a href="{% url 'service:folder_view' folder.id %}" class="text-decoration-none">
+                        <i class="fas fa-folder fa-4x text-warning"></i>
+                        <p class="mt-2">{{ folder.name }}</p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
     </div>
+
+</div>
 
 
 {% endblock %}

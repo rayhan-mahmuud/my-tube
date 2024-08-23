@@ -25,3 +25,6 @@ class FolderView(views.View):
             "videos": videos,
         }
         return render(request, template_name='folder_view.html', context=context)
+    
+    
+# Todo: Add folder icon and details, design the front end a little.
