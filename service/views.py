@@ -40,10 +40,14 @@ class FolderDetailView(views.View):
         folder = Folder.objects.get(pk=folder_id)
         videos = folder.videos.all()
         subfolders = folder.subfolders.all()
+        form = FolderForm(initial={'parent':folder})
+        breadcrumbs = folder.get_full_path()
         context = {
             "folder": folder,
             "subfolders": subfolders,
             "videos": videos,
+            "form": form,
+            "breadcrumbs": breadcrumbs
         }
         return render(request, template_name='folder_view.html', context=context)
     
@@ -55,5 +59,21 @@ class FolderDetailView(views.View):
         folder.delete()
         return redirect("service:folder_view",folder_id=folder.parent.id)
     
+
+class SubfolderCreateView(views.View):
+    form_class = FolderForm
+
+    def post(self, request, folder_id, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("service:folder_view", folder_id=folder_id)
+        
+        return redirect("service:folder_view", folder_id=folder_id)
+        
+        
+        
+        
+        
     
 # Todo: Add and remove folder functionality

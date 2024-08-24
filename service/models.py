@@ -12,6 +12,14 @@ class Folder(models.Model):
     def __str__(self) -> str:
         return f"{self.name}"
     
+    def get_full_path(self):
+        paths = []
+        folder = self
+        while folder:
+            paths.append(folder)
+            folder = folder.parent
+        return reversed(paths)
+    
 
 class Video(models.Model):
     name = models.CharField(max_length=255, unique=True)
