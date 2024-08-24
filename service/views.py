@@ -34,15 +34,6 @@ class IndexView(views.View):
         return render(request, self.template_name, context)
         
 
-# class FolderCreateView(views.View):
-#     form_class = FolderForm
-#     template_name = "newfolder.html"
-    
-#     def get(self, request, *args, **kwargs):
-#         form = self.form_class()
-#         folders = Folder.objects.filter(parent=None)
-#         return render(request, self.template_name, context={'form':form, 'folders':folders})
-    
 class FolderDetailView(views.View):
     
     def get(self, request, folder_id, *args, **kwargs):
@@ -55,6 +46,14 @@ class FolderDetailView(views.View):
             "videos": videos,
         }
         return render(request, template_name='folder_view.html', context=context)
+    
+    def post(self, request, folder_id, *args, **kwargs):
+        folder = Folder.objects.get(pk=folder_id)
+        if folder.parent is None:
+            folder.delete()
+            return redirect("service:index")
+        folder.delete()
+        return redirect("service:folder_view",folder_id=folder.parent.id)
     
     
 # Todo: Add and remove folder functionality
