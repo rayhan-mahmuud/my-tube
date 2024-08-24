@@ -3,7 +3,7 @@ from embed_video.fields import EmbedVideoField
 
 
 class Folder(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, unique=True)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, related_name='subfolders', null=True, blank=True)
     is_public = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -14,7 +14,7 @@ class Folder(models.Model):
     
 
 class Video(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     desc = models.CharField(max_length=255, null=True)
     url = EmbedVideoField()
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE, related_name='videos')

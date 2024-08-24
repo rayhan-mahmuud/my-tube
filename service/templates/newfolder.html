@@ -1,0 +1,28 @@
+<div class="col-6 col-md-3 col-lg-1-5 text-center">
+    <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#newfoldermodal">
+        <i class="bi bi-folder-plus" style="font-size: 3rem; color: #ffc107;"></i>
+        <p class="mt-2">New Folder</p>
+    </a>
+</div>
+
+<div class="modal" tabindex="-1" id="newfoldermodal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create New Folder</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cancel"></button>
+        </div>
+        <div class="modal-body">
+          <form method="POST" action="{% url 'service:index' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+          
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>

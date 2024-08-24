@@ -13,9 +13,9 @@
         <h3>Subfolders</h3>
         <div class="row">
             {% for subfolder in subfolders %}
-                <div class="col-4 col-md-3 text-center">
+                <div class="col-6 col-md-3 col-lg-1-5 text-center">
                     <a href="{% url 'service:folder_view' subfolder.id %}" class="text-decoration-none">
-                        <i class="fas fa-folder fa-4x text-warning"></i>
+                        <i class="bi bi-folder-fill" style="font-size: 3rem; color: #ffc107;"></i>
                         <p class="mt-2">{{ subfolder.name }}</p>
                     </a>
                 </div>

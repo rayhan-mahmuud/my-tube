@@ -1,0 +1,20 @@
+.parent-container {
+    background-color: #f8f9fa; /* Light gray background for the parent container */
+    min-height: 100vh; /* Covers most of the screen */
+    padding: 20px;
+}
+.subfolders-section,
+.videos-section {
+    background-color: #ffffff; /* White background for subfolders and videos sections */
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    margin-bottom: 20px;
+}
+.videos-section .embed-responsive {
+    margin-bottom: 15px;
+}
+
+.col-lg-1-5 {
+    width: 12.5%; /* 100% / 8 = 12.5% */
+}
